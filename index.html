@@ -1,52 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Camera App</title>
-  <style>
-    video, canvas {
-      width: 100%;
-      max-width: 480px;
-      border: 2px solid #333;
-      margin: 10px 0;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tetris Game</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Camera App</h1>
-  <video id="video" autoplay></video>
-  <br>
-  <button id="snap">Take Photo</button>
-  <br>
-  <canvas id="canvas"></canvas>
-
-  <script>
-    // Get elements
-    const video = document.getElementById('video');
-    const canvas = document.getElementById('canvas');
-    const context = canvas.getContext('2d');
-    const snapButton = document.getElementById('snap');
-
-    // Request camera access
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then(stream => {
-        video.srcObject = stream;
-      })
-      .catch(err => {
-        console.error("Error accessing the camera: ", err);
-        alert("Camera access is required to use this app.");
-      });
-
-    // Take snapshot
-    snapButton.addEventListener('click', () => {
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    });
-  </script>
+  <h1>Tetris Game</h1>
+  <div class="tetris-container">
+    <canvas id="tetris" width="240" height="400"></canvas>
+  </div>
+  <script src="tetris.js"></script>
 </body>
 </html>
